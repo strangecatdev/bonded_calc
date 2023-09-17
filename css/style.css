@@ -1,0 +1,99 @@
+/* Box Model Hack */
+* {
+	box-sizing: border-box;
+}
+
+/* Clear fix hack */
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.clear {
+	clear: both;
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+
+body {
+	padding-top:20px;
+	background-color:rgb(173, 170, 189) !important;
+	/* color:white !important; */
+}
+/* body{
+	background-color: grey !important;
+} */
+
+h1 {
+	font-size: 1.4rem !important;
+	text-align: center;
+	padding:2% 5px;
+	padding-top:10px;
+}
+p{
+	font-size: 1.2rem;
+}
+span {
+	font-size: 1rem;
+}
+/******************************************
+/* SMOL DEVICES
+/*******************************************/
+/* @media (max-width:850px) { */
+
+	.whole{
+		display:flex;
+		justify-content:center;
+		flex-wrap: wrap;
+	}
+	.calculator{
+		width:350px;
+		margin: 10px 10px;
+		}
+	.results{
+		padding-top:20px;
+		padding-left: 10px;
+		display: block;
+		width:350px;
+		/* margin:auto; */
+	}
+
+@media (min-width:850px) {
+	.results{
+		
+		padding-left: 5%;
+
+}
+
+
+
+/* } */
+/*
+@media (min-width:421px) {
+
+	.whole{
+		width:90%;
+	}
+	.calculator{
+		width:350px;
+		margin: 0px auto;
+		padding: 0 10px 0 10%;
+		float:left;
+	}
+	.results{
+		float:left;
+		padding:10px;
+		margin: 0px auto;
+		display: block;
+		width: 400px;
+	}
+}
+*/
+
+
