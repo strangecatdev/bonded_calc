@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="description" content="Your description goes here">
+	<meta name="description" content="Friend.Tech Value Calculator">
 	<meta name="keywords" content="one, two, three">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,24 +13,36 @@
 	<!-- external CSS link -->
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/buttons.css">
+
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 </head>
 
 <body>
-	<h1>Friend.Tech Buy Calculator 6000</h1><br>
+	<h1 class="gradient">Friend.Tech Key Calculator 6000</h1><br>
 
 	<div class="whole">
 
 		<section class='center calculator'>
 
 			<form>
-				<div class="mb-3">
-					<label for="initialKeys" class="form-label">Keys in circulation</label>
-					<input type="number" class="form-control" id="initialKeys">
-
+				<!-- <label for="together">Please enter total number of keys or exact price</label> -->
+				<div class="together" id="together">
+					<div class="mb-3 half">
+						<label for="initialKeys" class="form-label">Keys in circulation</label>
+						<input type="number" class="form-control" id="initialKeys">
+					</div>
+					<div id="or">
+						<p><b>OR</b></p>
+					</div>
+					<div class="mb-3 half">
+						<label for="priceCalc" class="form-label">Key Price</label>
+						<input type="number" class="form-control" id="priceCalc">
+					</div>
 				</div>
+
 				<div class="mb-3">
 					<label for="selfOwned" class="form-label">Total keys you own</label>
 					<input type="number" class="form-control" id="selfOwned">
@@ -39,18 +51,27 @@
 					<label for="spendLimit" class="form-label">Spend Limit</label>
 					<input type="number" class="form-control" id="spendLimit">
 				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="mex">
+					<label class="form-check-label" for="mex">
+						Using FriendMEX?
+					</label>
+				</div>
 
 			</form>
-			<button id="submitButton" type="submit" class="btn btn-secondary col-12">Calculate</button>
+			<button id="submitButton" type="submit" class="btn btn-primary col-12">Calculate</button>
 
 		</section>
 		<!-- <div class="centerIt"> -->
-			<section class='center results'>
-				<p id="result">
-					</h6>
-			</section>
+		<section class='center results'>
+			<p id="result">
+				</h6>
+		</section>
 		<!-- </div> -->
 	</div>
+	<footer>
+		<!-- <h6>Please see these calculations as approximations.</h6> -->
+	</footer>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
