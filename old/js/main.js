@@ -24,47 +24,16 @@ function getValues() {
 
 	let selfOwned = Number(document.querySelector("#selfOwned").value);
 	let spendLimit = Number(document.querySelector("#spendLimit").value);
-	let wantToBuy = Number(document.querySelector("#wantToBuy").value);
-	if (!spendLimit || wantToBuy) {
-		spendLimit = (Number(calcSpend(wantToBuy, numberOfKeys)));
-		// console.log(spendLimit + "yes");
-	}
-	//TODO
-	// if spend limit is empty or is there is a valur wantToBuy,
-	//calculate how much it will cost to buy those keys....
 	calcTotal(numberOfKeys, spendLimit, selfOwned);
 }
 
-// calcSpend(16, 24);
-function calcSpend(wish = 0, num = 0) {
-	// friendMex 3%
-	wish = wish + num;
-	let mex = 0;
-	if (document.querySelector("#mex").checked == true) {
-		mex = 0.03;
-	}
-	let price = 0;
-	let total = 0;
-	let i = num;
-	while (i < wish) {
-		price = ((i * i) / 16000) * (1.1 + mex);
-		total += price;
-		i++;
-		// console.log(i);
-	}
-	// console.log(total+'inside');
-	return total;
-}
-
-// num = Math.sqrt(price * 16000); //calculate number from price
+// num = Math.sqrt(price * 16000);
 
 function calcTotal(num = 1, limit = 0, self = 0) {
-	// VARIABLES
-	// normalize
 	if (num < self) {
 		num = self;
 	}
-	// friendMex 3%
+	Let
 	let mex = 0;
 	let mexMult = 1;
 	let mexTotal = 0;
@@ -72,17 +41,14 @@ function calcTotal(num = 1, limit = 0, self = 0) {
 		mex = 0.03;
 		mexMult = 0.97345132743;
 	}
-	// declare variables
-	const initSelf = self; //correction?
+	initSelf = self;
 	let total = 0;
 	let price = 0;
-	let i = num; // + 1 to calculate from next token value? (no)
-	const initPrice = (num * num) / 16000;
+	let i = num + 1; // + 1 to calculate the next token value ?????and + 1 to accomodate displayed portfolio value
+	let initPrice = (num * num) / 16000;
 	price = initPrice;
 	let keysBought = 0;
-
-	// MATH
-	while (total <= limit) {
+	while (total < limit) {
 		price = ((i * i) / 16000) * (1.1 + mex);
 		total += price;
 		i++;
@@ -95,10 +61,11 @@ function calcTotal(num = 1, limit = 0, self = 0) {
 		self--;
 		keysBought--;
 		price = (i * i) / 16000;
-		mexTotal = total * (mex / (1.1 + mex));
+		// if (document.querySelector("#mex").checked == true) {
+			mexTotal = (total *(mex/(1.1 + mex)));
+		// }
 	}
-	console.log(total +": total spend")
-	//RESULT
+
 	document.querySelector("#result").innerHTML =
 		`
 
@@ -110,10 +77,8 @@ function calcTotal(num = 1, limit = 0, self = 0) {
 		`
 	<span>
 	${((total - mexTotal) * (1 - 1 / 1.1)).toFixed(3)} of this in fees,
-	${(((total - mexTotal) * (1 - 1 / 1.1)) / 2).toFixed(3)} to you if self-buy
-	<span style="display: none" id="fm"><br>${mexTotal.toFixed(
-		3
-	)} to third party</span>
+	${((total - mexTotal) * (1 - 1 / 1.1) / 2).toFixed(3)} to you if self-buy
+	<span style="display: none" id="fm"><br>${mexTotal.toFixed(3)} to third party</span>
 	</span>
 	<br>
 	<br>` +
@@ -121,7 +86,7 @@ function calcTotal(num = 1, limit = 0, self = 0) {
 	
  	Price Per Key: <b>${price.toFixed(3)}Ξ</b> is per key
 	<br>
-  Keys total: <b>${i}</b>  keys total
+  Keys total: <b>${i - 1}</b>  keys total
 	<br>
 	<br>` +
 		`<b>Initial Stats</b><br>
@@ -133,6 +98,68 @@ function calcTotal(num = 1, limit = 0, self = 0) {
 	<br>
   `;
 	if (document.querySelector("#mex").checked == true) {
-		document.querySelector("#fm").style.display = "inline";
+		document.querySelector("#fm").style.display="inline";
 	}
+
 }
+
+// Owned Value: <b>${price * self}Ξ</b> for <b>${self}</b> keys held
+// 	<br>
+
+// document.querySelector("#result").innerHTML = `
+//   <b>New Values</b><br>
+// You now hold  <b>${self}</b> of these keys<br>
+
+// Their total value is <b>${price * self}Ξ</b><br><br>
+
+//   Total spend is <b>${total.toFixed(3)}Ξ</b> to buy ${keysBought} keys<br>
+// 	<span>
+// 	${(total * 0.0909).toFixed(3)} in fees,
+// 	${((total * 0.0909) / 2).toFixed(3)} to you if self-bought
+// 	</span>
+// 	<br>
+// 	<br>
+// 	<b>New Stats</b>
+// 	<br>
+//  	Price Per Key: <b>${price}Ξ</b> is per key
+// 	<br>
+//   Keys total: <b>${i - 1}</b>  keys total
+// 	<br>
+// 	<br>
+//   <b>Initial Stats</b><br>
+//   Owned Value: ${initSelf * initPrice}Ξ for ${initSelf} keys<br>
+// 	Price Per Key: ${initPrice}Ξ
+// 	<br>
+//   Keys Total: ${num}
+// 	<br>
+//   `;
+
+// ${i} is the new total keys in circulation<br>
+
+// `
+// Self-owned Value: ${price*self}
+// Self-owned Number: ${self}
+
+// Total keys: ${i}
+// Price: ${price}
+
+//   Total Spent: ${total.toFixed(3)}
+
+//   Initial total keys: ${num}
+//   Initial Price: ${initPrice}
+
+//   Inital self owned Value: ${initSelf*initPrice}
+//   Inital self owned: ${initSelf}
+//   `
+// `
+
+// New self owned Value: ${price*(i-num+selfHeld)}
+// Initial Price: ${initPrice}
+// Current Price: ${price}
+// Number of tokens held: ${i}
+
+// Total Spent: ${total.toFixed(3)}
+
+// Inital self owned Value: ${selfHeld*initPrice}
+// Inital self owned: ${selfHeld}
+// `
